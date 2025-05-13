@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Liza\\Desktop\\Progects\\TaskTracker\\TaskTracker\\TaskTracker.csproj": {}
+    "C:\\Users\\Liza\\Desktop\\Progects\\TaskTracker\\Core\\Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Liza\\Desktop\\Progects\\TaskTracker\\TaskTracker\\TaskTracker.csproj": {
+    "C:\\Users\\Liza\\Desktop\\Progects\\TaskTracker\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Liza\\Desktop\\Progects\\TaskTracker\\TaskTracker\\TaskTracker.csproj",
-        "projectName": "TaskTracker",
-        "projectPath": "C:\\Users\\Liza\\Desktop\\Progects\\TaskTracker\\TaskTracker\\TaskTracker.csproj",
+        "projectUniqueName": "C:\\Users\\Liza\\Desktop\\Progects\\TaskTracker\\Core\\Core.csproj",
+        "projectName": "Core",
+        "projectPath": "C:\\Users\\Liza\\Desktop\\Progects\\TaskTracker\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\Liza\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Liza\\Desktop\\Progects\\TaskTracker\\TaskTracker\\obj\\",
+        "outputPath": "C:\\Users\\Liza\\Desktop\\Progects\\TaskTracker\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -48,24 +48,6 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "dependencies": {
-            "FirebirdSql.EntityFrameworkCore.Firebird": {
-              "target": "Package",
-              "version": "[11.0.0, )"
-            },
-            "Microsoft.AspNetCore.OpenApi": {
-              "target": "Package",
-              "version": "[8.0.7, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[8.0.15, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[6.4.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -78,9 +60,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

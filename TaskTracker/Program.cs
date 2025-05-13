@@ -1,4 +1,9 @@
+using Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using infrastructure.Data;
+using Application.Mapping;
+using Application.Services;
+using infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,13 +11,22 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<AppContext>(options =>
-    options.UseFirebird(Configuration.GetConnectionString("FirebirdDb")));
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseFirebird(builder
+        .Configuration
+        .GetConnectionString
+            ("FirebirdDb")));
+builder.Services.AddControllers();
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<TaskService>();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5173") // порт Vue.js (Vite) или 8080
+        policy.WithOrigins("http://localhost:3050") // порт Vue.js (Vite) или 8080
             .AllowAnyHeader()
             .AllowAnyMethod();
     });

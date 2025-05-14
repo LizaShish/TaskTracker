@@ -6,7 +6,7 @@ using Core.Entities;
 
 namespace infrastructure.Repositories;
 
-public class TaskRepository:ITaskRepository
+public class TaskRepository : ITaskRepository
 {
     private readonly AppDbContext _appDbContext;
 
@@ -15,15 +15,15 @@ public class TaskRepository:ITaskRepository
         _appDbContext = appDbContext;
     }
 
-    public async Task<IEnumerable<TaskEntity>> GetAllAsync() =>
+    public async Task<IEnumerable<TaskEntity>> GetAll() =>
         await _appDbContext.Tasks.ToListAsync();
 
-    public async Task<TaskEntity> GetByIdAsync(int id)
+    public async Task<TaskEntity> GetById(Guid id)
     {
         return await _appDbContext.Tasks.FindAsync(id);
     }
 
-    public async Task<TaskEntity> CreateAsync(TaskEntity task)
+    public async Task<TaskEntity> Create(TaskEntity task)
     {
         
         var addTask = new TaskEntity
@@ -40,9 +40,9 @@ public class TaskRepository:ITaskRepository
         return addTask;
     }
 
-    public async Task<TaskEntity> UpdateAsync(TaskEntity task)
+    public async Task<TaskEntity> Update(TaskEntity task)
     {
-        var updateTask = await _appDbContext.Tasks.FindAsync(task.TaskId);
+        var updateTask = await _appDbContext.Tasks.FindAsync(task.Id);
         if (updateTask != null)
         {
             updateTask.Title = task.Title;
@@ -55,7 +55,7 @@ public class TaskRepository:ITaskRepository
         return updateTask;
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task Delete(Guid id)
     {
         var deleteTask = await _appDbContext.Tasks.FindAsync(id);
         if (deleteTask != null)
@@ -66,9 +66,8 @@ public class TaskRepository:ITaskRepository
         
     }
     
-    public async Task<IEnumerable<TaskEntity>> FilterAsync(string status, string assignedTo)
+    public async Task<IEnumerable<TaskEntity>> Filter(string status, string assignedTo)
     {
-        return await _appDbContext.Tasks
-            .Where(x => x.Status == status && x.AssignedTo == assignedTo).ToListAsync();
+        return await _appDbContext.Tasks.ToListAsync();
     }
 }

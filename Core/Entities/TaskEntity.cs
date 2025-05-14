@@ -4,8 +4,7 @@ namespace Core.Entities;
 
 public class TaskEntity
 {
-    [Key]
-    public int TaskId { get; set; }
+    public Guid Id { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
     public string Status { get; set; }

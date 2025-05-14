@@ -4,11 +4,11 @@ namespace Application.Interfaces;
 
 public interface ITaskRepository
 {
-    Task<IEnumerable<TaskEntity>> GetAllAsync();
-    Task<TaskEntity> GetByIdAsync(int id);
-    Task<TaskEntity> CreateAsync(TaskEntity task);
-    Task<TaskEntity> UpdateAsync(TaskEntity task);
-    Task DeleteAsync(int id);
-    Task<IEnumerable<TaskEntity>> FilterAsync(string status, string assignedTo);
+    Task<IEnumerable<TaskEntity>> GetAll();
+    Task<TaskEntity> GetById(Guid id);
+    Task<TaskEntity> Create(TaskEntity task);
+    Task<TaskEntity> Update(TaskEntity task);
+    Task Delete(Guid id);
+    Task<IEnumerable<TaskEntity>> Filter(string status, string assignedTo);
     
 }

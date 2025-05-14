@@ -4,10 +4,10 @@ namespace Application.Interfaces;
 
 public interface ITaskService
 {
-    Task<IEnumerable<TaskDTO>> GetAllAsync();
-    Task<TaskDTO> GetByIdAsync(int id);
-    Task  CreateAsync(TaskDTO taskDTO);
-    Task  UpdateAsync(TaskDTO taskDTO);
-    Task DeleteAsync(int id);
-    Task<IEnumerable<TaskDTO>> FilterAsync(string status, string assignedTo);
+    Task<IEnumerable<TaskDTO>> GetAll();
+    Task<TaskDTO> GetById(Guid id);
+    Task  Create(TaskDTO taskDTO);
+    Task  Update(TaskDTO taskDTO);
+    Task Delete(Guid id);
+    Task<IEnumerable<TaskDTO>> Filter(string status, string assignedTo);
 }

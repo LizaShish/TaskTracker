@@ -35,7 +35,7 @@ public class TaskRepository : ITaskRepository
             CreateDate = DateTime.UtcNow,
             UpdateDate = DateTime.UtcNow,
         };
-        await _appDbContext.Tasks.AddAsync(task);
+        await _appDbContext.Tasks.AddAsync(addTask);
         await _appDbContext.SaveChangesAsync();
         return addTask;
     }

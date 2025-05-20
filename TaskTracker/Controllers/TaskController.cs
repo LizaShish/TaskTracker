@@ -70,5 +70,4 @@ public class TaskController : ControllerBase
         var tasks = await _taskService.Filter(status, assignedTo);
         return Ok(tasks);
     }
-    
 }

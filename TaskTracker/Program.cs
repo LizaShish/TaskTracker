@@ -17,10 +17,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseFirebird(builder
         .Configuration
         .GetConnectionString
-            ("FirebirdDb")));
+            ("DefaultConnection")));
 builder.Services.AddControllers();
-//builder.Services.AddScoped<ITaskRepository, TaskRepository>();
-//builder.Services.AddScoped<TaskService>();
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddServices();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -45,7 +45,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseRouting();
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 app.Run();
 
 

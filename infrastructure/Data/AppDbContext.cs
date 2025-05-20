@@ -16,5 +16,9 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<TaskEntity>().ToTable("Tasks");
+        modelBuilder.Entity<TaskEntity>().Property(t => t.CreateDate).HasDefaultValueSql("CURRENT_TIMESTAMP");
+        modelBuilder.Entity<TaskEntity>()
+            .Property(t => t.Description)
+            .HasMaxLength(1000);
     }
 }

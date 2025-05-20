@@ -29,6 +29,8 @@ public class TaskRepository : ITaskRepository
         var addTask = new TaskEntity
         {
             Title = task.Title,
+            Id = Guid.NewGuid(),
+            CreateBy = task.CreateBy,
             Description = task.Description,
             Status = task.Status,
             AssignedTo = task.AssignedTo,

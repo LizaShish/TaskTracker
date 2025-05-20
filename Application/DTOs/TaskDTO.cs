@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Application.DTOs;
 
@@ -11,7 +12,9 @@ public class TaskDTO
     [Required]
     public string Status { get; set; }
     public string AssignedTo { get; set; }
-    
+    [Required]
+    [JsonPropertyName("createBy")]
+    public string CreateBy { get; set; }
     public DateTime CreateDate { get; set; } 
     public DateTime UpdateDate { get; set; }
    

@@ -12,8 +12,8 @@ using infrastructure.Data;
 namespace infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250513150230_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250519153919_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,13 +26,11 @@ namespace infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.TaskEntity", b =>
                 {
-                    b.Property<int>("TaskId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasAnnotation("Fb:ValueGenerationStrategy", FbValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("CHAR(16) CHARACTER SET OCTETS");
 
                     b.Property<string>("AssignedTo")
-                        .IsRequired()
                         .HasColumnType("BLOB SUB_TYPE TEXT");
 
                     b.Property<string>("CreateBy")
@@ -40,11 +38,12 @@ namespace infrastructure.Migrations
                         .HasColumnType("BLOB SUB_TYPE TEXT");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("TIMESTAMP");
+                        .HasColumnType("TIMESTAMP")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("BLOB SUB_TYPE TEXT");
+                        .HasMaxLength(1000)
+                        .HasColumnType("VARCHAR(1000)");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -57,7 +56,7 @@ namespace infrastructure.Migrations
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("TIMESTAMP");
 
-                    b.HasKey("TaskId");
+                    b.HasKey("Id");
 
                     b.ToTable("Tasks", (string)null);
                 });

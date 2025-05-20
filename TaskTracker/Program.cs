@@ -28,7 +28,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5174") // порт Vue.js (Vite) или 8080
+        policy.WithOrigins("http://localhost:5177") // порт Vue.js (Vite) или 8080
             .AllowAnyHeader()
             .AllowAnyMethod();
     });

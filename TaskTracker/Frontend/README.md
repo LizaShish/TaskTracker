@@ -20,3 +20,21 @@ Frontend (Vue 3 + Vite)
 -В выпадающей информации в терминале появится ссылка, 
 которую нужно открыть в браузере
 
+
+SQL-запросы:
+1. Выводим задачи за последние 7 дней
+SELECT *
+FROM Tasks
+WHERE CreateDate >= DATEADD(DAY, -7, GETDATE());
+
+2. Выводим пользователей, у которых больше всего задач (CreateBy)
+   SELECT CreateBy, COUNT(*) AS CreatedTasks
+   FROM Tasks
+   GROUP BY CreateBy
+   ORDER BY CreatedTasks DESC;
+
+3. Подсчитаем количество задач по каждому статусу
+   SELECT Status, COUNT(*) AS TaskCount
+   FROM Tasks
+   GROUP BY Status
+   ORDER BY TaskCount DESC;

@@ -33,7 +33,7 @@ WHERE CreateDate >= DATEADD(DAY, -7, GETDATE());
    GROUP BY CreateBy
    ORDER BY CreatedTasks DESC;
 
-3. Подсчитаем количество задач по каждому статусу
+3. Подсчитаем~~~~ количество задач по каждому статусу
    SELECT Status, COUNT(*) AS TaskCount
    FROM Tasks
    GROUP BY Status

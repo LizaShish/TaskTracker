@@ -33,8 +33,12 @@ WHERE CreateDate >= DATEADD(DAY, -7, GETDATE());
    GROUP BY CreateBy
    ORDER BY CreatedTasks DESC;
 
-3. Подсчитаем~~~~ количество задач по каждому статусу
+3. Подсчитаем количество задач по каждому статусу
    SELECT Status, COUNT(*) AS TaskCount
    FROM Tasks
    GROUP BY Status
    ORDER BY TaskCount DESC;
+
+
+Для проекта используется Firebird SQL. Скрипт для создания таблиц находится в папке:
+\TaskTracker\Docs

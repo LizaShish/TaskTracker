@@ -1,54 +1,79 @@
 <template>
   <div>
-    <h2>{{ isEdit ? 'Редактировать' : 'Добавить' }} задачу</h2>
-    <form @submit.prevent="save">
-      <input v-model="task.title" placeholder="Название" required />
-      <textarea v-model="task.description" placeholder="Описание" />
+    <h2>Создание новой задачи</h2>
+    <form @submit.prevent="saveTask">
+      <label>Название:</label>
+      <input v-model="task.title" required />
+
+      <label>Описание:</label>
+      <textarea v-model="task.description"></textarea>
+
+      <label>Статус:</label>
       <select v-model="task.status">
-        <option value="To Do">To Do</option>
-        <option value="In Progress">In Progress</option>
-        <option value="Done">Done</option>
+        <option>To Do</option>
+        <option>In Progress</option>
+        <option>Done</option>
       </select>
-      <input v-model="task.createBy" placeholder="Создана кем" />
-      <input v-model="task.assignedTo" placeholder="Назначена на" />
+
+      <label>Кем создано:</label>
+      <input v-model="task.createdBy" />
+
+      <label>Назначено на:</label>
+      <input v-model="task.assignedTo" />
+
       <button type="submit">Сохранить</button>
     </form>
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import taskService from '../services/taskService';
+<script>
+import axios from 'axios';
 
-const router = useRouter();
-const route = useRoute();
-
-const isEdit = !!route.params.id;
-const task = ref({
-  id: '',
-  title: '',
-  description: '',
-  status: 'To Do',
-  createBy: '',
-  assignedTo: '',
-  createDate: '',
-  updateDate: ''
-});
-
-onMounted(async () => {
-  if (isEdit) {
-    const existingTask = await taskService.getById(route.params.id);
-    task.value = { ...existingTask };
-  }
-});
-
-const save = async () => {
-  if (isEdit) {
-    await taskService.update(task.value);
-  } else {
-    await taskService.create(task.value);
-  }
-  router.push('/');
+export default {
+  name: 'AddTask',
+  data() {
+    return {
+      task: {
+        id: null,
+        title: '',
+        description: '',
+        status: 'To Do',
+        createdBy: '',
+        assignedTo: '',
+      },
+    };
+  },
+  methods: {
+    saveTask() {
+      axios
+          .post('https://localhost:7184/api/task', this.task)
+          .then(() => {
+            alert('Задача создана!');
+            this.resetForm();
+          })
+          .catch((error) => {
+            console.error(error);
+            alert('Ошибка при создании задачи.');
+          });
+    },
+    resetForm() {
+      this.task = {
+        id: null,
+        title: '',
+        description: '',
+        status: 'To Do',
+        createdBy: '',
+        assignedTo: '',
+      };
+    },
+  },
 };
 </script>
+
+<style scoped>
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+</style>

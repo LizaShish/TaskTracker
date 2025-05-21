@@ -1,7 +1,11 @@
 import axios from 'axios';
 
-const API_URL = 'https://localhost:7184/api/task'; 
-
+const API_URL = axios.create({
+    baseURL: 'https://localhost:7184/api/task', 
+    headers: {
+        'Content-Type': 'application/json'
+    }
+});
 export default {
     async getAll() {
         const res = await axios.get(API_URL);

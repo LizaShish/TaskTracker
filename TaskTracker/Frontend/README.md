@@ -1,29 +1,22 @@
-# Frontend
+Backend (ASP.NET Core)
+-Откройте решение в Visual Studio\Rider.
 
-This template should help get you started developing with Vue 3 in Vite.
+-Установите зависимости через NuGet 
 
-## Recommended IDE Setup
+-Файл launchSettings.json должен содержать корректные порты (https://localhost:7184).
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+-Запустите backend (API доступен по адресу: https://localhost:7184/api/task или в зависимости от настроек)
 
-## Customize configuration
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+Frontend (Vue 3 + Vite)
 
-## Project Setup
+-Перейдите в папку frontend: cd Frontend  (она нахотся \TaskTracker\TaskTracker\Frontend  
+ понимаю, что так быть не должно, но иначе Rider не видел папку)
 
-```sh
-npm install
-```
+-Установите зависимости: npm install
 
-### Compile and Hot-Reload for Development
+-Запусти фронтенд-приложение: npm run dev
 
-```sh
-npm run dev
-```
+-В выпадающей информации в терминале появится ссылка, 
+которую нужно открыть в браузере
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```

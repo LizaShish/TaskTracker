@@ -12,7 +12,6 @@ public class AppDbContext : DbContext
         : base(options)
     {
     }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<TaskEntity>().ToTable("Tasks");

@@ -73,6 +73,8 @@ export default {
           .catch(err => {
             console.error('Ошибка сохранения задачи:', err);
           });
+      console.log('Payload перед отправкой:', this.task);
+      taskService.create(this.task)
     },
     deleteTask(id) {
       axios.delete(`${this.baseUrl()}/api/task/${id}`)

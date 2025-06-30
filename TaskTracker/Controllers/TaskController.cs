@@ -40,7 +40,11 @@ public class TaskController : ControllerBase
     {
         if(!ModelState.IsValid)
         {
-            return BadRequest(ModelState);
+            var errors = ModelState
+                .Values
+                .SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage);
+            return BadRequest(new { message = "Validation failed", errors });
         }
         await _taskService.Create(taskDto);
         return Ok("Task created");

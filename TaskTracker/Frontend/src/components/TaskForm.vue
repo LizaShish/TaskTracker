@@ -16,7 +16,7 @@
       </select>
 
       <label>Кем создано:</label>
-      <input v-model="task.createdBy" />
+      <input v-model="task.createBy" />
 
       <label>Назначено на:</label>
       <input v-model="task.assignedTo" />
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/services/taskService.js';
 
 export default {
   name: 'AddTask',
@@ -38,7 +38,7 @@ export default {
         title: '',
         description: '',
         status: 'To Do',
-        createdBy: '',
+        createBy: '',
         assignedTo: '',
       },
     };
@@ -46,7 +46,7 @@ export default {
   methods: {
     saveTask() {
       axios
-          .post('https://localhost:7184/api/task', this.task)
+          .create( this.task)
           .then(() => {
             alert('Задача создана!');
             this.resetForm();
@@ -62,7 +62,7 @@ export default {
         title: '',
         description: '',
         status: 'To Do',
-        createdBy: '',
+        createBy: '',
         assignedTo: '',
       };
     },

@@ -1,27 +1,28 @@
 import axios from 'axios';
 
-const API_URL = axios.create({
-    baseURL: 'https://localhost:7184/api/task', 
+const API = axios.create({
+    baseURL: '/api/task',
     headers: {
         'Content-Type': 'application/json'
     }
 });
+
 export default {
     async getAll() {
-        const res = await axios.get(API_URL);
+        const res = await API.get('/');
         return res.data;
     },
     async getById(id) {
-        const res = await axios.get(`${API_URL}/${id}`);
+        const res = await API.get(`/${id}`);
         return res.data;
     },
     async create(task) {
-        await axios.post(API_URL, task);
+        await API.post('/', task);
     },
     async update(task) {
-        await axios.put(API_URL, task);
+        await API.put('/', task);
     },
     async remove(id) {
-        await axios.delete(`${API_URL}/${id}`);
+        await API.delete(`/${id}`);
     }
 };
